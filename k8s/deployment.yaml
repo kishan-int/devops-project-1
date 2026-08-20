@@ -1,0 +1,19 @@
+apiVersion: apps/v1        # K8s API version for Deployments
+kind: Deployment           # Type of K8s object
+metadata:
+  name: flask-app          # Name of your deployment
+spec:
+  replicas: 2              # Run 2 copies of your container
+  selector:
+    matchLabels:
+      app: flask-app       # Links deployment to pods
+  template:
+    metadata:
+      labels:
+        app: flask-app     # Label on each pod
+    spec:
+      containers:
+      - name: flask-app
+        image: PLACEHOLDER # We'll replace this with ECR URL later
+        ports:
+        - containerPort: 5000  # Port your Flask app runs on
